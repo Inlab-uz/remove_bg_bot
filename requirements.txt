@@ -1,2 +1,4 @@
 aiogram~=2.14
 environs~=8.0.0
+aiohttp~=3.7.4.post0
+requests~=2.26.0

@@ -48,8 +48,8 @@ async def remove_background(img_url):
     if response.status_code == requests.codes.ok:
         with open(f'{img_name}', 'wb') as out:
             out.write(response.content)
-        time.sleep(1)
-        os.remove(img_name)
+        # time.sleep(1)
+        # os.remove(img_name)
 
     else:
         return f"Botda  xatolik yuz berdi"
