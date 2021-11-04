@@ -1,9 +1,4 @@
-import random
-
 import requests
-import os
-import time
-import logging
 
 # url = "https://background-removal.p.rapidapi.com/remove"
 #
@@ -24,7 +19,6 @@ import logging
 
 
 async def remove_background(img_url):
-    img_name = random.randint(1000000,9999999)
     # response = requests.post(
     #     'https://api.remove.bg/v1.0/removebg',
     #     files={'image_file': f'{img_url}'},
@@ -34,22 +28,15 @@ async def remove_background(img_url):
     # if response.status_code == requests.codes.ok:
     #     return response.content
     #         # out.write(response.content)
-    # else:
+    # else:iiQi1iEVTuFHaM374bTK5KT3
     #     return "Error: {response.status_code, response.text}"
 
     response = requests.post(
-        'https://api.remove.bg/v1.0/removebg',
-        data={
-            'image_url': f'{img_url}',
-            'size': 'auto'
-        },
-        headers={'X-Api-Key': 'iiQi1iEVTuFHaM374bTK5KT3'},
+        'https://sdk.photoroom.com/v1/segment',
+        headers={'x-api-key': '1e352e0fb19099fe2984cdc43d90614da96d1840'},
+        files={'image_file': open(f'{img_url}', 'rb')},
     )
-    if response.status_code == requests.codes.ok:
-        with open(f'{img_name}', 'wb') as out:
-            out.write(response.content)
-        # time.sleep(1)
-        # os.remove(img_name)
 
-    else:
-        return f"Botda  xatolik yuz berdi"
+    response.raise_for_status()
+    with open(f'{img_url}', 'wb') as f:
+        f.write(response.content)

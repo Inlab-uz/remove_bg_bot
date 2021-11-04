@@ -4,6 +4,7 @@ from aiogram.dispatcher.handler import CancelHandler
 from aiogram.dispatcher.middlewares import BaseMiddleware
 
 from data.config import CHANNELS
+from keyboards.inline.subscribtion import check_button
 from utils.misc import subscription
 from loader import bot
 
@@ -21,7 +22,7 @@ class BigBrother(BaseMiddleware):
         else:
             return
 
-        result = "Botdan foydalanish uchun quyidagi kanallarga obuna bo'ling:\n"
+        result = "Botdan foydalanish uchun quyidagi kanalga obuna bo'ling:\n"
         final_status = True
         for channel in CHANNELS:
             status = await subscription.check(user_id=user,
@@ -33,5 +34,5 @@ class BigBrother(BaseMiddleware):
                 result += (f"👉 <a href='{invite_link}'>{channel.title}</a>\n")
 
         if not final_status:
-            await update.message.answer(result, disable_web_page_preview=True)
+            await update.message.answer(result,reply_markup=check_button, disable_web_page_preview=True)
             raise CancelHandler()
