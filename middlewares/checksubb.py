@@ -34,5 +34,5 @@ class BigBrother(BaseMiddleware):
                 result += (f"👉 <a href='{invite_link}'>{channel.title}</a>\n")
 
         if not final_status:
-            await update.message.answer(result,reply_markup=check_button, disable_web_page_preview=True)
+            await update.message.answer(result, reply_markup=check_button, disable_web_page_preview=True)
             raise CancelHandler()
